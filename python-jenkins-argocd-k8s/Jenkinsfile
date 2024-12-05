@@ -10,7 +10,7 @@ pipeline {
         
         stage('Checkout'){
            steps {
-                git branch: 'main', url: 'https://github.com/iam-veeramalla/cicd-end-to-end.git'
+                git branch: 'main', url: 'https://github.com/Suresh923/cicd-end-to-end.git'
            }
         }
 
@@ -19,7 +19,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Buid Docker Image'
-                    docker build -t mahesh8887/jenkin-ci-cd:${BUILD_NUMBER} .
+                    docker build -t suresh923/jenkin-ci-cd:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -30,13 +30,13 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push to Repo'
-                    docker push mahesh8887/jenkin-ci-cd:${BUILD_NUMBER}
+                    docker push suresh923/jenkin-ci-cd:${BUILD_NUMBER}
                     '''
                 }
             }
         }
         
-        stage('Checkout K8S manifest SCM'){
+        stage('Checkout K8S manifest SCM'){ 
             steps {
                 git credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', 
                 url: 'https://github.com/iam-veeramalla/cicd-demo-manifests-repo.git',
